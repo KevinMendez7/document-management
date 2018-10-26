@@ -1,0 +1,31 @@
+var recargaRasca_configuracionesGenerales_505 = [
+{
+	nombre: "Nicaragua",
+	longitudPIN: "16",
+	longitudRecarga: "16",
+	flagSolicitarNRecarga: "Y", 
+	operadorActivo: "I",
+	maxNumInt: "3",
+	tipoLista: "B",
+	rutaArchivosAudioEs: "../../../../audios/es/NCA/", 
+	anuncioNuevoSaldo: "Y",
+	profileSms: "NICARAGUA1",
+	audioNoAccesoPorPlan: "LOC_RETARA_lista_negra",
+	audioPostActive: "LOC_INF_POST-ACTIV_es",
+	audioDespedida: "LOC_RETARA_despedida_gracias",
+	audioPinNoIden: "LOC_RETARA_pet_disculpas",
+	audioMaxReintentos: "LOC_RETARA_congestion",
+	audioNumRecarga: "LOC_RETARA_obt_codigo_es",
+	audioOperador: "LOC_RETARA_transferencia_operadora",
+	audioPostRecarga1: "info_recarga1",
+	audioPostRecarga2: "info_recarga2",
+    audioCodUsado : "LOC_RETARA_cod_ya_usado_es",
+    audioCodIncorrecto : "LOC_RETARA_codigo_incorrecto_logica",
+    audioCodSecreto : "LOC_RETARA_obt_codigo_es",
+    audioCongestion : "LOC_RETARA_congestion",
+    audioNumCortoInvalido : "LOC_RETARA_pet_disculpas",
+    moneda :"NIC",
+    manejaActivacion : "S",
+    sourceAddrSms : 'MOVISTAR'
+}
+];

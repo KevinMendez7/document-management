@@ -69,7 +69,44 @@ public class UserRole implements Serializable {
 	public void setUserAccount(Set<UserAccount> userAccount) {
 		this.userAccount = userAccount;
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
+		result = prime * result + ((userAccount == null) ? 0 : userAccount.hashCode());
+		result = prime * result + userRoleId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserRole other = (UserRole) obj;
+		if (roleName == null) {
+			if (other.roleName != null)
+				return false;
+		} else if (!roleName.equals(other.roleName))
+			return false;
+		if (userAccount == null) {
+			if (other.userAccount != null)
+				return false;
+		} else if (!userAccount.equals(other.userAccount))
+			return false;
+		if (userRoleId != other.userRoleId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "UserRole [userRoleId=" + userRoleId + ", roleName=" + roleName + ", userAccount=" + userAccount + "]";
+	}	
 
 }

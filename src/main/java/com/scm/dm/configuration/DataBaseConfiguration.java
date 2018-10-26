@@ -12,9 +12,17 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+
 @Configuration
 @EnableTransactionManagement
 public class DataBaseConfiguration {
+	
+	@Bean
+	public Module datatypeHibernateModule() {
+	  return new Hibernate5Module();
+	}
 	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
@@ -32,9 +40,9 @@ public class DataBaseConfiguration {
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://domain:port/schema?verifyServerCertificate=false&useSSL=true");
-		dataSource.setUsername("username");
-		dataSource.setPassword("password");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/documents_management?verifyServerCertificate=false&useSSL=true");
+		dataSource.setUsername("root");
+		dataSource.setPassword("admin");
 		return dataSource;
 		
 	}
