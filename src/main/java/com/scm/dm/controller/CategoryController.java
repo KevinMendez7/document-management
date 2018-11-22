@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.scm.dm.domain.Category;
-import com.scm.dm.domain.SubCategory;
 import com.scm.dm.payload.AddCategoryResponse;
 import com.scm.dm.service.CategoryService;
 
@@ -18,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +30,11 @@ public class CategoryController {
 	@Autowired
 	private CategoryService _categoryService; 		
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/category", method = RequestMethod.GET, headers = "Accept=application/json")
 	public ResponseEntity<List<Category>> getCategories(@RequestParam(value = "name", required = false) String name){
 		
-		List<Category> list = new ArrayList();
+		List<Category> list = new ArrayList<Category>();
 		
 		if(name == null) {
 			
@@ -64,6 +63,7 @@ public class CategoryController {
 		return new ResponseEntity<List<Category>>(list, HttpStatus.OK);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(
 			value = "/category/{name}", 
 			method = RequestMethod.GET, 
@@ -91,7 +91,7 @@ public class CategoryController {
 		return new ResponseEntity<Category>(category, HttpStatus.OK);
 	}
 	
-	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping("/category")
 	public ResponseEntity<AddCategoryResponse> addCategory(
 			@RequestBody Category category, UriComponentsBuilder uriComponentsBuilder){			
@@ -119,14 +119,14 @@ public class CategoryController {
 				new AddCategoryResponse("The category has been created!", category.toString()), 
 				HttpStatus.OK);
 	}
-	
+		
 	@DeleteMapping("/category/{id}")
 	public ResponseEntity<AddCategoryResponse> deleteCategory(@PathVariable("id") Integer idCategory){
 	
 		if(idCategory == null) {
 			
 			return new ResponseEntity<AddCategoryResponse>(
-					new AddCategoryResponse("Id can't be null", idCategory.toString()), 
+					new AddCategoryResponse("Id can't be null", null), 
 					HttpStatus.CONFLICT);
 			
 		}
@@ -146,14 +146,14 @@ public class CategoryController {
 		if(idCategory == null) {
 			
 			return new ResponseEntity<AddCategoryResponse>(
-					new AddCategoryResponse("Id can't be null", idCategory.toString()), 
+					new AddCategoryResponse("Id can't be null", null), 
 					HttpStatus.CONFLICT);
 			
 		}
 		
 		Category _category = _categoryService.getCategoryById(idCategory);
 		
-		if(category == null) {
+		if(_category == null) {
 			
 			return new ResponseEntity<AddCategoryResponse>(
 					new AddCategoryResponse("Can't update a non-existent category", idCategory.toString()), 

@@ -1,14 +1,12 @@
-package com.scm.dm.dao;
+package com.scm.dm.service;
 
 import java.util.List;
 
 import com.scm.dm.domain.Document;
 
-public interface DocumentDao {
+public interface DocumentService {
 	
 	List<Document> getAllDocument();
-	
-	List<Document> getDocumentBySubcategory(String nameCategory, String nameSubCategory);	
 	
 	Document getDocumentById(Integer idDocument);
 	

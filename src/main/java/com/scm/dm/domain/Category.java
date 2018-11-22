@@ -44,11 +44,11 @@ public class Category implements Serializable {
 	@Column(name = "date_creation", insertable = false, updatable = false)
 	private Date dateCreation;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name="id_user")	
 	private UserAccount userAccount;
 	
-	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private Set<SubCategory> subCategory;
 	

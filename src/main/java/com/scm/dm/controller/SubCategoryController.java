@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.scm.dm.domain.Category;
 import com.scm.dm.domain.SubCategory;
-import com.scm.dm.payload.AddCategoryResponse;
 import com.scm.dm.payload.AddSubCategoryResponse;
 import com.scm.dm.service.CategoryService;
 import com.scm.dm.service.SubCategoryService;
@@ -36,6 +34,7 @@ public class SubCategoryController {
 	@Autowired
 	private SubCategoryService _subCategoryService;	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/category/{name}/subcategory")
 	public ResponseEntity<List<SubCategory>> getSubCategories(
 			@PathVariable("name") String nameCategory, 
@@ -62,7 +61,8 @@ public class SubCategoryController {
 				
 				if(subCategory != null && category.getSubCategory().contains(subCategory)) {
 					
-					list.add(subCategory);					
+					list.add(subCategory);			
+					
 					return new ResponseEntity<List<SubCategory>>(list, HttpStatus.OK);
 					
 				}
@@ -83,6 +83,7 @@ public class SubCategoryController {
 		return new ResponseEntity<List<SubCategory>>(list, HttpStatus.OK);
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/category/{name}/subcategory/{nameSub}")
 	public ResponseEntity<SubCategory> getSubCategoryById(
 			@PathVariable("name") String nameCategory, 
@@ -116,6 +117,7 @@ public class SubCategoryController {
 					 																						
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping("/category/{name}/subcategory")
 	public ResponseEntity<AddSubCategoryResponse> addSubCategory(
 			@PathVariable("name") String nameCategory,
@@ -169,7 +171,7 @@ public class SubCategoryController {
 			
 			return new ResponseEntity<AddSubCategoryResponse>(
 					new AddSubCategoryResponse("category name can't be null", 
-							nameCategory.toString()), 
+							null), 
 					HttpStatus.CONFLICT);
 			
 		}
@@ -188,7 +190,7 @@ public class SubCategoryController {
 		if(idSubCategory == null) {
 			
 			return new ResponseEntity<AddSubCategoryResponse>(
-					new AddSubCategoryResponse("Id can't be null", idSubCategory.toString()), 
+					new AddSubCategoryResponse("Id can't be null", null), 
 					HttpStatus.CONFLICT);
 			
 		}
@@ -222,7 +224,7 @@ public class SubCategoryController {
 			
 			return new ResponseEntity<AddSubCategoryResponse>(
 					new AddSubCategoryResponse("category name can't be null", 
-							nameCategory.toString()), 
+							null), 
 					HttpStatus.CONFLICT);
 			
 		}
@@ -241,7 +243,7 @@ public class SubCategoryController {
 		if(idSubCategory == null) {
 			
 			return new ResponseEntity<AddSubCategoryResponse>(
-					new AddSubCategoryResponse("Id can't be null", idSubCategory.toString()), 
+					new AddSubCategoryResponse("Id can't be null", null), 
 					HttpStatus.CONFLICT);
 			
 		}

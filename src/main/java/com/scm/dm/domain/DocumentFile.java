@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "document_file")
+@Table(name = "document_files")
 public class DocumentFile implements Serializable {
 	
 	/**
@@ -34,11 +34,11 @@ public class DocumentFile implements Serializable {
 	private String filePath;
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "id_user")
 	private UserAccount userAccount;
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "idDocument")
+	@JoinColumn(name = "id_document")
 	private Document document;
 	
 	@Column(name = "date_creation")

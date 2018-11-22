@@ -16,13 +16,20 @@ public class CategoryDaoImpl extends AbstractSession implements CategoryDao {
 	@Override
 	public List<Category> getCategories() {
 		// TODO Auto-generated method stub
-		return getSession().createQuery("from Category").list();
+		return getSession().createQuery("from Category c "
+				+ "join fetch c.userAccount u "
+				+ "where c.userAccount = u.userId").list();
 	}
 
 	@Override
 	public Category getCategoryByName(String nameCategory) {
 		// TODO Auto-generated method stub
-		return (Category) getSession().createQuery("from Category where nameCategory = :nameCategory")
+		return (Category) getSession().createQuery("from Category c "
+				+ "join fetch c.subCategory s "
+				+ "join fetch c.userAccount u "
+				+ "where c.nameCategory = :nameCategory and "
+				+ "c.idCategory = s.category and "
+				+ "c.userAccount = u.userId")
 				.setParameter("nameCategory", nameCategory)
 				.uniqueResult();
 	}

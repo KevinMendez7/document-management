@@ -31,20 +31,20 @@ public class Document implements Serializable {
 	@Column(name = "id_document")
 	private Long idDocument;	
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "idSubCategory")	
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_subcategory")	
 	private SubCategory subCategory;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "idUser")
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_user")
 	private UserAccount userAccount;
 	
 	@OneToMany(mappedBy = "document")
 	@JsonIgnore
 	private Set<DocumentComment> DocumentComment;
 	
-	@OneToMany(mappedBy = "document")
 	@JsonIgnore
+	@OneToMany(mappedBy = "document", fetch = FetchType.LAZY)
 	private Set<DocumentFile> DocumentFile;
 	
 	@OneToMany(mappedBy = "document")

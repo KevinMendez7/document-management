@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -30,8 +31,13 @@ public class DocumentIndex implements Serializable {
 	private String value;	
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "idDocument")
+	@OrderBy
+	@JoinColumn(name = "id_document", nullable = false)
 	private Document document;
+	
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_subcategory_index")
+	private SubCategoryIndex subCategoryIndex;
 	
 	public DocumentIndex() {
 		super();
@@ -59,6 +65,14 @@ public class DocumentIndex implements Serializable {
 
 	public void setDocument(Document document) {
 		this.document = document;
+	}	
+
+	public SubCategoryIndex getSubCategoryIndex() {
+		return subCategoryIndex;
+	}
+
+	public void setSubCategoryIndex(SubCategoryIndex subCategoryIndex) {
+		this.subCategoryIndex = subCategoryIndex;
 	}
 
 	@Override

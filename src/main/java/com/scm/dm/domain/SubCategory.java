@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,17 +43,21 @@ public class SubCategory implements Serializable {
 	@Column(name = "date_creation", insertable = false, updatable = false)
 	private Date dateCreation;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_category")
 	private Category category;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_user")
 	private UserAccount userAccount;
 	
 	@OneToMany(mappedBy = "subCategory")
 	@JsonIgnore
 	private Set<Document> document;
+	
+	@OneToMany(mappedBy = "subCategory")
+	@JsonIgnore
+	private Set<SubCategoryIndex> subCategoryIndex;
 	
 	public SubCategory() {
 		super();
@@ -114,6 +117,14 @@ public class SubCategory implements Serializable {
 
 	public void setDocument(Set<Document> document) {
 		this.document = document;
+	}	
+
+	public Set<SubCategoryIndex> getSubCategoryIndex() {
+		return subCategoryIndex;
+	}
+
+	public void setSubCategoryIndex(Set<SubCategoryIndex> subCategoryIndex) {
+		this.subCategoryIndex = subCategoryIndex;
 	}
 
 	@Override
