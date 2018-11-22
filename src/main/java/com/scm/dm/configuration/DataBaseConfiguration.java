@@ -40,9 +40,9 @@ public class DataBaseConfiguration {
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/documents_management?verifyServerCertificate=false&useSSL=true");
-		dataSource.setUsername("root");
-		dataSource.setPassword("admin");
+		dataSource.setUrl("jdbc:mysql://url?verifyServerCertificate=false&useSSL=true");
+		dataSource.setUsername("user");
+		dataSource.setPassword("pass");
 		return dataSource;
 		
 	}
